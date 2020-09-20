@@ -1,0 +1,9 @@
+.alert_custom{
+    position: fixed !important;
+    top: 0 !important;
+    left: 50% !important;
+    width: 30em !important;
+    margin-left: -15em !important;
+    border-radius: initial !important;
+    z-index: 11111111111111 !important;
+}
