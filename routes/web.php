@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\AuthController;
 Use App\Http\Controllers\DashboardController;
 Use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\CategoriesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +36,9 @@ Route::middleware(['auth'])->group(function (){
     //Dashboard
     Route::get('/aPanel/{role}/dashboard',[DashboardController::class,'dashboardPage'])->name('dashboard');
 
-    Route::get('/aPanel/{role}/users/list',[UserController::class,'index'])->name('users.list');
-    Route::get('/aPanel/{role}/users/addNew',[UserController::class,'addNewUser'])->name('users.addNew');
+    Route::get('/aPanel/{role?}/users',[UserController::class,'index'])->name('users.list');
+    Route::get('/aPanel/{role?}/addNewUser',[UserController::class,'addNewUser'])->name('users.addNewUser');
+    Route::post('/aPanel/users/saveAddUserAccount',[UserController::class,'saveAddUserAccount'])->name('saveAddUserAccount');
+
+    Route::get('/aPanel/{role?}/categories',[CategoriesController::class,'index'])->name('categories');
 });

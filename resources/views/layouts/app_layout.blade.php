@@ -28,6 +28,8 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('src/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
     <link rel="stylesheet" href="{{asset('src/css/custom_styles.css')}}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{asset('src/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -36,6 +38,7 @@
     <![endif]-->
     <!-- jQuery 3 -->
     <script src="{{asset('src/bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{asset('src/js/customjs.js')}}"></script>
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -74,6 +77,9 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{asset('src/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<!-- DataTables -->
+<script src="{{asset('src/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('src/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <!-- Morris.js charts -->
 <script src="{{asset('src/bower_components/raphael/raphael.min.js')}}"></script>
 <script src="{{asset('src/bower_components/morris.js/morris.min.js')}}"></script>
@@ -101,5 +107,19 @@
 <script src="{{asset('src/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('src/dist/js/demo.js')}}"></script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.dataTable').DataTable()
+        $('.customDataTable').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false
+        })
+    })
+</script>
 </body>
 </html>

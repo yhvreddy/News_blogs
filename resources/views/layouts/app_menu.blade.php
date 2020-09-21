@@ -1,3 +1,7 @@
+<?php
+$role = DB::table('users')->select('users.role','roles.name as role_name')->join('roles','roles.id','=','users.role')->where('roles.id',Auth::user()->role)->first();
+$roleName = strtolower(urlencode($role->role_name));
+?>
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -12,11 +16,12 @@
             </div>
             <div class="pull-left info">
                 <p>{{Auth::User()->name}}</p>
-                @if($userStatus)
+                @if(Cache::has('user-is-online-'.Auth::user()->id))
                     <a href="javascript:0;"><i class="fa fa-circle text-success"></i> Online</a>
                 @else
                     <a href="javascript:0;"><i class="fa fa-circle text-gray"></i> Offline</a>
                 @endif
+                <a href="javascript:0;" class="pull-right hidden"><i class="fa fa-sign-out"></i> Logout</a>
             </div>
         </div>
         <!-- search form -->
@@ -34,13 +39,13 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-                <a href="#">
+                <a href="{{route('dashboard',['role' => $roleName])}}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li><a href="#"><i class="fa fa-users"></i> <span>Users</span></a></li>
+            <li><a href="{{route('users.list',['role' => $roleName])}}"><i class="fa fa-users"></i> <span>Users</span></a></li>
             <li>
-                <a href="#">
+                <a href="{{route('categories', ['role' => $roleName])}}">
                     <i class="fa fa-list-alt"></i> <span>Categories</span>
                 </a>
             </li>

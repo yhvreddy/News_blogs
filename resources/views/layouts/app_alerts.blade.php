@@ -17,7 +17,7 @@
     </div>
 @endif
 <script>
-    // $(".alert_custom").fadeTo(4500, 500).slideUp(500, function(){
-    //     $(".alert_custom").slideUp(500);
-    // });
+    $(".alert_custom").fadeTo(4500, 500).slideUp(500, function(){
+        $(".alert_custom").slideUp(500);
+    });
 </script>
