@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="{{asset('src/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('src/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
-    <link rel="stylesheet" href="{{asset('src/css/custom_styles.css')}}">
     <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('src/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -41,6 +40,9 @@
     <script src="{{asset('src/js/customjs.js')}}"></script>
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    @include('layouts.app_links')
+    <link rel="stylesheet" href="{{asset('src/css/custom_styles.css')}}">
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini fixed sidebar-collapsegit">
 <div class="wrapper">
@@ -118,7 +120,9 @@
             'ordering'    : true,
             'info'        : true,
             'autoWidth'   : false
-        })
+        });
+        $(".fileUploadPlugIn").fileinput();
+        $(".fileUploadPlugInCustom").fileinput({'showUpload':false, 'previewFileType':'any'});
     })
 </script>
 </body>

@@ -1,9 +1,5 @@
-.alert_custom{
-    position: fixed !important;
-    top: 0 !important;
-    left: 50% !important;
-    width: 30em !important;
-    margin-left: -15em !important;
-    border-radius: initial !important;
-    z-index: 11111111111111 !important;
-}
+.alert_custom{position: fixed !important;top: 0 !important;left: 50% !important;width: 30em !important;margin-left: -15em !important;border-radius: initial !important;z-index: 11111111111111 !important;}
+input[type='file']{ padding: 5px 5px 5px 5px !important; }
+.file-input .file-preview .fileinput-remove{ display: none !important; }
+table tbody td img {width: 30px !important;height: 30px !important;}
+.fa_s20{font-size: 20px !important;}

@@ -97,4 +97,44 @@ class PreDefinedController extends Controller
     {
         return Cache::has('user-is-online-'.$userId);
     }
+
+    //file upload
+    public function uploadFile($request,$inputName,$filePath, $valid_extensions = null)
+    {
+        if($request->hasfile($inputName)){
+            $filepath = 'uploads/'.$filePath.'/';
+
+            $file = $request->file($inputName);
+            $filename = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $tempPath = $file->getRealPath();
+            $fileSize = $file->getSize();
+            $mimeType = $file->getMimeType();
+
+            $filename = time().'_'.$filename;
+            $file->move($filepath,$filename);
+            return $filepath.$filename;
+        }else{
+            return null;
+        }
+    }
+
+    //multi upload files
+    public function multiUploadFiles($request,$inputname,$folderpath)
+    {
+        $images = [];
+        $filepath = 'public/uploads/'.$folderpath.'/';
+        if($request->hasfile($inputname)){
+            $files = $request->file($inputname);
+            //$allowedfileExtension=['pdf','jpg','png','docx'];
+            foreach($files as $k => $file){
+                //$filename  = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $filename = time().'RD'.rand(1,999).'.'.$extension;
+                $file->move($filepath, $filename);
+                $images[$k] = $filepath. $filename;
+            }
+        }
+        return $images;
+    }
 }

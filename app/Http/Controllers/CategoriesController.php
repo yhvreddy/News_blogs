@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\PreDefinedController as preDefiendFun;
 use Illuminate\Http\Request;
+use App\CategoriesModel as Categories;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
@@ -15,6 +17,30 @@ class CategoriesController extends Controller
     //Categories page
     public function index(Request $request)
     {
-        return view('categories.categories');
+        $categories = Categories::where('status',1)->get();
+        return view('categories.categories', compact('categories'));
     }
+
+    //Save Category data
+    public function saveCategoryData(Request $request)
+    {
+        $request->validate([
+            'name' => 'required:max:185',
+            'icon' => 'required|mimes:jpg,jpeg,svg,png|max:4056'
+        ]);
+        if($request->file()){
+            $uploadFile = $this->preDefiend->uploadFile($request,'icon','categories');
+            $save = Categories::create(['name'=>$request->name,'image_link'=>$uploadFile,'user_id'=>Auth::user()->id])->id;
+            if($save > 0){
+                return redirect()->back()->with('success',ucfirst($request->name).' category as saved successfully.');
+            }else{
+                if(file_exists($filePath)){ unlink($filePath); }
+                return redirect()->back()->with('failed','Failed to save category details.');
+            }
+        }else{
+            return redirect()->back()->with('warning','Invalid file upload.');
+        }
+    }
+
+
 }

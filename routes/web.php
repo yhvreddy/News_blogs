@@ -41,4 +41,5 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/aPanel/users/saveAddUserAccount',[UserController::class,'saveAddUserAccount'])->name('saveAddUserAccount');
 
     Route::get('/aPanel/{role?}/categories',[CategoriesController::class,'index'])->name('categories');
+    Route::post('/aPanel/categories/saveData',[CategoriesController::class,'saveCategoryData'])->name('saveCategoryData');
 });

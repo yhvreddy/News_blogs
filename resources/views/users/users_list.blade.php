@@ -26,8 +26,9 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table class="table table-bordered table-striped customDataTable">
-                                <thead>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped customDataTable">
+                                    <thead>
                                     <tr class="bg-primary">
                                         <th width="20">#</th>
                                         <th></th>
@@ -38,8 +39,8 @@
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
-                                </thead>
-                                <tbody>
+                                    </thead>
+                                    <tbody>
                                     @foreach($users as $key => $user)
                                         <tr>
                                             <td>{{$key+1}}</td>
@@ -74,18 +75,19 @@
                                             </td>
                                             <td align="center">
                                                 @if($user->status == 0)
-                                                    <span data-toggle="tooltip" title="Click to Active"><a href="javascript:0;" class="text-danger"><i class="fa fa-power-off"></i></a></span>&nbsp;
+                                                    <span data-toggle="tooltip" title="Click to Active"><a href="javascript:0;" class="text-danger"><i class="fa fa-power-off fa_s20"></i></a></span>&nbsp;
                                                 @elseif($user->status == 1)
-                                                    <span data-toggle="tooltip" title="Click to Deactivate"><a href="javascript:0;" class="text-success"><i class="fa fa-power-off"></i></a></span>&nbsp;
+                                                    <span data-toggle="tooltip" title="Click to Deactivate"><a href="javascript:0;" class="text-success"><i class="fa fa-power-off fa_s20"></i></a></span>&nbsp;
                                                 @endif
-                                                <span data-toggle="tooltip" title="Details"><a href="javascript:0;"><i class="fa fa-id-card"></i></a></span>&nbsp;
-                                                <span data-toggle="tooltip" title="Edit"><a href="javascript:0;"><i class="fa fa-edit"></i></a></span>&nbsp;
-                                                <span data-toggle="tooltip" title="Delete"><a href="javascript:0;"><i class="fa fa-trash-o"></i></a></span>&nbsp;
+                                                <span data-toggle="tooltip" title="Details"><a href="javascript:0;"><i class="fa fa-id-card fa_s20"></i></a></span>&nbsp;
+                                                <span data-toggle="tooltip" title="Edit"><a href="javascript:0;"><i class="fa fa-edit fa_s20"></i></a></span>&nbsp;
+                                                <span data-toggle="tooltip" title="Delete"><a href="javascript:0;"><i class="fa fa-trash-o fa_s20"></i></a></span>&nbsp;
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <!-- /.box-body -->
                     </div>
