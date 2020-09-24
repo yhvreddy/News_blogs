@@ -40,7 +40,7 @@ Route::middleware(['auth'])->group(function (){
         Route::get('{role?}/subcategories',[SubCategoriesController::class,'index'])->name('subcategories');
         Route::post('subcategories/saveData',[SubCategoriesController::class,'saveSubCategoryData'])->name('saveSubCategoryData');
         //Tags
-        Route::get('{role?}/roles',[TagsController::class, 'index'])->name('tags');
+        Route::get('{role?}/tags',[TagsController::class, 'index'])->name('tags');
         //Posts
     });
 });
