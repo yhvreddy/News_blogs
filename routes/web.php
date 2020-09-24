@@ -4,16 +4,9 @@ Use App\Http\Controllers\AuthController;
 Use App\Http\Controllers\DashboardController;
 Use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoriesController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\SubCategoriesController;
+use App\Http\Controllers\TagsController;
+
 /*
  *  Website Controller
  * */
@@ -33,13 +26,21 @@ Route::post('/changePassword/updateNewPassword',[AuthController::class,'updateNe
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function (){
-    //Dashboard
-    Route::get('/aPanel/{role}/dashboard',[DashboardController::class,'dashboardPage'])->name('dashboard');
-
-    Route::get('/aPanel/{role?}/users',[UserController::class,'index'])->name('users.list');
-    Route::get('/aPanel/{role?}/addNewUser',[UserController::class,'addNewUser'])->name('users.addNewUser');
-    Route::post('/aPanel/users/saveAddUserAccount',[UserController::class,'saveAddUserAccount'])->name('saveAddUserAccount');
-
-    Route::get('/aPanel/{role?}/categories',[CategoriesController::class,'index'])->name('categories');
-    Route::post('/aPanel/categories/saveData',[CategoriesController::class,'saveCategoryData'])->name('saveCategoryData');
+    Route::group(['prefix'=>'aPanel'],function (){
+        //Dashboard
+        Route::get('{role}/dashboard',[DashboardController::class,'dashboardPage'])->name('dashboard');
+        //Users
+        Route::get('{role?}/users',[UserController::class,'index'])->name('users.list');
+        Route::get('{role?}/addNewUser',[UserController::class,'addNewUser'])->name('users.addNewUser');
+        Route::post('users/saveAddUserAccount',[UserController::class,'saveAddUserAccount'])->name('saveAddUserAccount');
+        //Categories
+        Route::get('{role?}/categories',[CategoriesController::class,'index'])->name('categories');
+        Route::post('categories/saveData',[CategoriesController::class,'saveCategoryData'])->name('saveCategoryData');
+        //SubCategories
+        Route::get('{role?}/subcategories',[SubCategoriesController::class,'index'])->name('subcategories');
+        Route::post('subcategories/saveData',[SubCategoriesController::class,'saveSubCategoryData'])->name('saveSubCategoryData');
+        //Tags
+        Route::get('{role?}/roles',[TagsController::class, 'index'])->name('tags');
+        //Posts
+    });
 });

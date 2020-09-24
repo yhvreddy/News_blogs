@@ -28,18 +28,22 @@ class CategoriesController extends Controller
             'name' => 'required:max:185',
             'icon' => 'required|mimes:jpg,jpeg,svg,png|max:4056'
         ]);
-        if($request->file()){
-            $uploadFile = $this->preDefiend->uploadFile($request,'icon','categories');
-            $save = Categories::create(['name'=>$request->name,'image_link'=>$uploadFile,'user_id'=>Auth::user()->id])->id;
-            if($save > 0){
-                return redirect()->back()->with('success',ucfirst($request->name).' category as saved successfully.');
-            }else{
-                if(file_exists($filePath)){ unlink($filePath); }
-                return redirect()->back()->with('failed','Failed to save category details.');
+        if($request->file()):
+            try {
+                $uploadFile = $this->preDefiend->uploadFile($request,'icon','categories');
+                $save = Categories::create(['name'=>$request->name,'image_link'=>$uploadFile,'user_id'=>Auth::user()->id])->id;
+                if($save > 0){
+                    return redirect()->back()->with('success',ucfirst($request->name).' category as saved successfully.');
+                }else{
+                    if(file_exists($uploadFile)){ unlink($uploadFile); }
+                    return redirect()->back()->with('failed','Failed to save category details.');
+                }
+            }catch (\Exception $exception){
+                return redirect()->back()->with('warning','Unable to save category details or Invalid file upload.');
             }
-        }else{
+        else:
             return redirect()->back()->with('warning','Invalid file upload.');
-        }
+        endif;
     }
 
 

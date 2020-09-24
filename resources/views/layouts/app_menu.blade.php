@@ -50,12 +50,12 @@ $roleName = strtolower(urlencode($role->role_name));
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{route('subcategories',['role' => $roleName])}}">
                     <i class="fa fa-list"></i> <span>SubCategories</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{route('tags',['role' => $roleName])}}">
                     <i class="fa fa-tags"></i> <span>Tags</span>
                 </a>
             </li>
