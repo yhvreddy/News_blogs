@@ -123,6 +123,7 @@
         });
         $(".fileUploadPlugIn").fileinput();
         $(".fileUploadPlugInCustom").fileinput({'showUpload':false, 'previewFileType':'any'});
+        $('.select2').select2();
     })
 </script>
 </body>

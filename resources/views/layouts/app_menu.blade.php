@@ -68,8 +68,8 @@ $roleName = strtolower(urlencode($role->role_name));
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Add Blog</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Blog List</a></li>
+                    <li><a href="{{route('posts.add',['role'=>$roleName])}}"><i class="fa fa-circle-o"></i> Add Blog</a></li>
+                    <li><a href="{{route('posts.list',['role'=>$roleName])}}"><i class="fa fa-circle-o"></i> Blog List</a></li>
                 </ul>
             </li>
             <li class="treeview">

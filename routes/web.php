@@ -6,7 +6,7 @@ Use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\SubCategoriesController;
 use App\Http\Controllers\TagsController;
-
+use App\Http\Controllers\ArticalsController;
 /*
  *  Website Controller
  * */
@@ -41,6 +41,10 @@ Route::middleware(['auth'])->group(function (){
         Route::post('subcategories/saveData',[SubCategoriesController::class,'saveSubCategoryData'])->name('saveSubCategoryData');
         //Tags
         Route::get('{role?}/tags',[TagsController::class, 'index'])->name('tags');
+        Route::post('tags/saveData',[TagsController::class, 'saveTagData'])->name('newTag.save');
         //Posts
+        Route::get('{role?}/posts',[ArticalsController::class,'index'])->name('posts.list');
+        Route::get('{role?}/posts/addNew',[ArticalsController::class,'addNewPost'])->name('posts.add');
+        Route::get('/posts/addNew/appendSource/{id?}',[ArticalsController::class,'appendNewPostSource'])->name('posts.add.appendSource');
     });
 });
