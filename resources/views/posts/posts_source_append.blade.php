@@ -2,7 +2,7 @@
     <div class="addSourceLinks row">
         <input type="hidden" value="urls" name="sourceTypes[]">
         <div class="col-md-4 form-group">
-            <input type="text" name="sourceTitle[]" required class="form-control" placeholder="Title *">
+            <input type="text" name="sourceUrlsTitle[]" required class="form-control" placeholder="Title *">
         </div>
         <div class="col-md-6 form-group">
             <input type="url" name="sourceUrls[]" required class="form-control" placeholder="Url Link *">
@@ -15,10 +15,10 @@
     <div class="addSourceFiles row">
         <input type="hidden" value="files" name="sourceTypes[]">
         <div class="col-md-4 form-group">
-            <input type="text" name="sourceTitle[]" required class="form-control" placeholder="Title *">
+            <input type="text" name="sourceFilesTitle[]" required class="form-control" placeholder="Title *">
         </div>
         <div class="col-md-6 form-group">
-            <input type="file" name="sourcesFiles[]" required placeholder="" required class="form-control fileUploadPlugInCustom" data-show-preview="false" accept=".png,.mp4,.avg,.zip,.rar,.svg,.jpeg,.jpg" data-msg-placeholder="Upload Files *">
+            <input type="file" name="sourceFiles[]" required placeholder="" required class="form-control fileUploadPlugInCustom" data-show-preview="false" accept=".png,.mp4,.avg,.zip,.rar,.svg,.jpeg,.jpg" data-msg-placeholder="Upload Files *">
         </div>
         <div class="col-md-2">
             <a href="javascript:0;" class="btn btn-danger removeAppendSources"> - Remove</a>

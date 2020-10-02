@@ -62,30 +62,32 @@ $roleName = strtolower(urlencode($role->role_name));
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-newspaper-o"></i>
-                    <span>Blog</span>
+                    <span>Posts</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('posts.add',['role'=>$roleName])}}"><i class="fa fa-circle-o"></i> Add Blog</a></li>
-                    <li><a href="{{route('posts.list',['role'=>$roleName])}}"><i class="fa fa-circle-o"></i> Blog List</a></li>
+                    <li><a href="{{route('posts.add',['role'=>$roleName])}}"><i class="fa fa-circle-o"></i> Add New Post</a></li>
+                    <li><a href="{{route('posts.list',['role'=>$roleName])}}"><i class="fa fa-circle-o"></i> Posts List</a></li>
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-cog"></i>
-                    <span>Master Settings</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Roles</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Permissions</a></li>
-                </ul>
-            </li>
-            <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+            @if(Auth::user()->role <= 2)
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-cog"></i>
+                        <span>Master Settings</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{route('roles',['role'=>$roleName])}}"><i class="fa fa-circle-o"></i> Roles</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Permissions</a></li>
+                    </ul>
+                </li>
+            @endif
+            <li><a href="{{route('userProfile',['role'=>$roleName])}}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

@@ -27,3 +27,41 @@
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<script src="{{asset('src/plugins/ckeditor/ver_5/ckeditor.js')}}"></script>
+{{--<script src="{{asset('src/plugins/ckeditor/ver_4/ckeditor.js')}}"></script>--}}
+<script>
+    function CKEditorChange(name,fileName) {
+        CKEDITOR.replace(name,{
+            customConfig: fileName,
+        });
+    }
+    function getSubcategories(categoryId,AppendId) {
+        if(categoryId != null || categoryId != ''){
+            $.ajax({
+                url:'{{url("aPanel/getSubCategories/list")}}'+'/'+categoryId,
+                method:"GET",
+                success:function (subCategoriesData) {
+                    $("#"+AppendId).empty();
+                    if(subCategoriesData.code == true){
+                        $(".subcategory").text('*');
+                        $("#"+AppendId).attr('required','required');
+                        $("#"+AppendId).append('<option value="">Select SubCategory Name</option>');
+                        $.each(subCategoriesData.data, function(subCategoryIndex, subCategoryValue) {
+                            $("#"+AppendId).append('<option value="' + subCategoryValue.id + '">' + subCategoryValue.name + '</option>');
+                        });
+                    }else{
+                        $("#"+AppendId).append('<option value="">No SubCategories Found</option>');
+                        $(".subcategory").text('');
+                        $("#"+AppendId).removeAttr('required');
+                    }
+                }
+            });
+        }else{
+            $("#"+AppendId).empty();
+            $("#"+AppendId).append('<option value="">Select SubCategory Name</option>');
+            $(".subcategory").text('');
+            $("#"+AppendId).removeAttr('required');
+        }
+    }
+</script>

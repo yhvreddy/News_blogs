@@ -6,6 +6,7 @@ use App\Http\Controllers\PreDefinedController as preDefiendFun;
 use Illuminate\Http\Request;
 use App\CategoriesModel as Categories;
 use Illuminate\Support\Facades\Auth;
+use App\SubCategoriesModel as SubCategories;
 
 class CategoriesController extends Controller
 {
@@ -46,5 +47,14 @@ class CategoriesController extends Controller
         endif;
     }
 
-
+    //get SubCategories List
+    public function getSubCategoriesList(Request $request)
+    {
+        $subCategories = SubCategories::where(['status'=>1,'category_id'=>$request->category_id])->get();
+        if (count($subCategories) > 0):
+            return response()->json(['code'=>true,'data'=>$subCategories]);
+        else:
+            return response()->json(['code'=>false,'data'=>$subCategories]);
+        endif;
+    }
 }

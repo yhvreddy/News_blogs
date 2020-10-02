@@ -11,4 +11,3 @@ function addNewUsers(popUpId,url) {
         }
     })
 }
-

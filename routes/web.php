@@ -7,6 +7,9 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\SubCategoriesController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\ArticalsController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RolesController;
+
 /*
  *  Website Controller
  * */
@@ -46,5 +49,14 @@ Route::middleware(['auth'])->group(function (){
         Route::get('{role?}/posts',[ArticalsController::class,'index'])->name('posts.list');
         Route::get('{role?}/posts/addNew',[ArticalsController::class,'addNewPost'])->name('posts.add');
         Route::get('/posts/addNew/appendSource/{id?}',[ArticalsController::class,'appendNewPostSource'])->name('posts.add.appendSource');
+        Route::post('posts/saveData',[ArticalsController::class,'savePostData'])->name('savePostData');
+
+
+        Route::get('getSubCategories/list/{category_id}',[CategoriesController::class,'getSubCategoriesList']);
+
+
+        Route::get('{role?}/userProfile',[ProfileController::class,'userProfile'])->name('userProfile');
+
+        Route::get('{role?}/roles',[RolesController::class,'roles'])->name('roles');
     });
 });

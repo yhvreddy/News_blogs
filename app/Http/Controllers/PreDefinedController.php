@@ -120,21 +120,21 @@ class PreDefinedController extends Controller
     }
 
     //multi upload files
-    public function multiUploadFiles($request,$inputname,$folderpath)
+    public function multiUploads($request,$inputname,$folderpath)
     {
-        $images = [];
-        $filepath = 'public/uploads/'.$folderpath.'/';
+        $source = [];
         if($request->hasfile($inputname)){
+            $filepath = 'uploads/'.$folderpath.'/';
             $files = $request->file($inputname);
             //$allowedfileExtension=['pdf','jpg','png','docx'];
             foreach($files as $k => $file){
-                //$filename  = $file->getClientOriginalName();
+                $filename  = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension();
                 $filename = time().'RD'.rand(1,999).'.'.$extension;
                 $file->move($filepath, $filename);
-                $images[$k] = $filepath. $filename;
+                $source[$k] = $filepath. $filename;
             }
         }
-        return $images;
+        return $source;
     }
 }
